@@ -7,8 +7,9 @@
 <body ng-app="app" ng-controller="AppCtrl as app">
 My app goes here !!!
 
-{{ app.message }}
-
+<div ng-repeat="pin in app.pins">
+    {{ pin.title }}
+</div>
 
 <script src="angular.min.js"></script>
 <script src="js/app.js"></script>

@@ -1,8 +1,10 @@
 var app = angular.module("app",[]);
 
-app.controller("AppCtrl", function (){
+app.controller("AppCtrl", function ($http){
     var app = this;
 
-    app.message = "Am I working ?"
+    $http.get("api/pin").success(function(data){
+        app.pins = data.objects;
+    })
 
 })

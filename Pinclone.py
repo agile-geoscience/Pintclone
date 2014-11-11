@@ -1,3 +1,4 @@
+# video at https://www.youtube.com/watch?v=2geC50roans
 from flask import Flask
 from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
