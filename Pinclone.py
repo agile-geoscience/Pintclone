@@ -1,9 +1,10 @@
 from flask import Flask
+from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Text
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pin.db'
 
@@ -16,12 +17,15 @@ class Pin(db.Model):
 
 db.create_all()
 
+api_manager = APIManager(app, flask_sqlalchemy_db=db)
+api_manager.create_api(Pin, methods=['GET', 'POST', 'DELETE', 'PUT'])
+# Connect to http://127.0.0.1:5000/api/pin !
 
 app.debug = True
 
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def index():
+    return app.send_static_file("index.html")
 
 app.debug=True
 
