@@ -2,9 +2,11 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Text
 
+
 app = Flask(__name__)
 
-app.config['SQLACHEMY_DATABASE_URI'] = 'sqlite://pin.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pin.db'
+
 db = SQLAlchemy(app)
 
 class Pin(db.Model):
@@ -15,7 +17,7 @@ class Pin(db.Model):
 db.create_all()
 
 
-#app.debug = True
+app.debug = True
 
 @app.route('/')
 def hello_world():
