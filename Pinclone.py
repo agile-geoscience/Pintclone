@@ -1,4 +1,6 @@
 # video at https://www.youtube.com/watch?v=2geC50roans
+# tutorial done until 12"40'
+
 from flask import Flask
 from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
