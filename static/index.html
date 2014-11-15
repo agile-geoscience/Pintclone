@@ -5,7 +5,8 @@
     <title>Pin clone</title>
 </head>
 <body ng-app="app" ng-controller="AppCtrl as app">
-My app goes here !!!
+
+<button ng-click="app.addPin()">Add pin</button>
 
 <div ng-repeat="pin in app.pins">
     {{ pin.title }}
