@@ -13,5 +13,12 @@ app.controller("AppCtrl", function ($http){
                 app.pin.push(data);
             })
     }
-
+    app.deletePin=function(pin){
+        $http.delete("/api/pin/"+pin.id).success(function(response){
+                app.pins.splice(app.pins.indexOf(pin),1)
+        })
+    }
+    app.updatePin=function(pin){
+        $http.put("/api/pin/"+pin.id,pin);
+    }
 })

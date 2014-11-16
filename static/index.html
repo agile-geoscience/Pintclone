@@ -9,7 +9,12 @@
 <button ng-click="app.addPin()">Add pin</button>
 
 <div ng-repeat="pin in app.pins">
-    {{ pin.title }}
+    <img ng-src="{{ pin.image }}" alt=""/>
+    <div class="ui">
+        <input type="text" ng-model="pin.title"/>
+        <button ng-click="app.updatePin(pin)">Update</button>
+        <button ng-click="app.deletePin(pin)">Delete</button>
+    </div>
 </div>
 
 <script src="angular.min.js"></script>

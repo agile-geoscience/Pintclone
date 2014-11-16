@@ -1,5 +1,5 @@
 # video at https://www.youtube.com/watch?v=2geC50roans
-# tutorial done until 14"20'
+# tutorial done until 17"40'
 
 from flask import Flask
 from flask.ext.restless import APIManager
