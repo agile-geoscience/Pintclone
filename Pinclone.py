@@ -13,10 +13,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pin.db'
 
 db = SQLAlchemy(app)
 
+
 class Pin(db.Model):
     id = Column(Integer, primary_key=True)
     title = Column(Text, unique=False)
     image = Column(Text, unique=False)
+
 
 db.create_all()
 
@@ -26,12 +28,13 @@ api_manager.create_api(Pin, methods=['GET', 'POST', 'DELETE', 'PUT'])
 
 app.debug = True
 
+
 @app.route('/')
 def index():
     return app.send_static_file("index.html")
 
-app.debug=True
 
+app.debug = True
 
 if __name__ == '__main__':
     app.run()
