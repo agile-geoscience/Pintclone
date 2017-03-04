@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pin clone</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href = "css/styles.css">
+    <link rel="shortcut icon" type="image/ico" href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+<body ng-app="app" ng-controller="AppCtrl as app">
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          {% include "navbar.html" %}
+        </div>
+      </div>
+    </div>
+
+  {% block body %}{% endblock %}
+
+  <div class="container">
+
+  <footer>
+    <div style="float:right">
+      <img src="http://austinwu.com/images/flask.svg" width="30" alt="Powered by Flask" />
+    </div>
+    <p><a href="http://www.agilescientific.com/">© 2017 Agile*</a>&nbsp;/&nbsp;augur effect</p>
+  </footer>
+</div>
+
+<script src="angular.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

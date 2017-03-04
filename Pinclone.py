@@ -5,13 +5,14 @@ from flask import Flask
 from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Text
+from flask import request, render_template
 
 
-app = Flask(__name__, static_url_path='')
+application = Flask(__name__, static_url_path='')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pin.db'
+application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pin.db'
 
-db = SQLAlchemy(app)
+db = SQLAlchemy(application)
 
 
 class Pin(db.Model):
@@ -22,19 +23,17 @@ class Pin(db.Model):
 
 db.create_all()
 
-api_manager = APIManager(app, flask_sqlalchemy_db=db)
+api_manager = APIManager(application, flask_sqlalchemy_db=db)
 api_manager.create_api(Pin, methods=['GET', 'POST', 'DELETE', 'PUT'])
 # Connect to http://127.0.0.1:5000/api/pin !
 
-app.debug = True
 
-
-@app.route('/')
+@application.route('/')
 def index():
-    return app.send_static_file("index.html")
+    return application.send_static_file("index.html")
 
 
-app.debug = True
+application.debug = True
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
