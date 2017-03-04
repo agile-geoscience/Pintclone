@@ -27,11 +27,9 @@ api_manager = APIManager(application, flask_sqlalchemy_db=db)
 api_manager.create_api(Pin, methods=['GET', 'POST', 'DELETE', 'PUT'])
 # Connect to http://127.0.0.1:5000/api/pin !
 
-
 @application.route('/')
 def index():
     return application.send_static_file("index.html")
-
 
 application.debug = True
 
