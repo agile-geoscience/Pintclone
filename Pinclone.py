@@ -9,7 +9,7 @@ from flask import send_from_directory
 import os
 from flask import request
 from flask import jsonify, json
-import goldenGoogleVision as ggv
+#import goldenGoogleVision as ggv
 
 
 application = Flask(__name__, static_url_path='')
