@@ -5,6 +5,8 @@ from flask import Flask
 from flask_restless import APIManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Text
+from flask import send_from_directory
+import os
 
 
 application = Flask(__name__, static_url_path='')
@@ -36,6 +38,12 @@ def index():
 @application.route('/about')
 def about():
     return application.send_static_file("about.html")
+
+
+@application.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(application.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 application.debug = True
