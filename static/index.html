@@ -14,11 +14,15 @@
     <img class="card-img-top img-fluid" ng-src="{{ pin.image }}" alt="">
     <div class="card-block">
       <h4 class="card-title">{{ pin.title }}</h4>
-      <p class="card-text">{{ pin.tags }}</p>
+      <p class="card-text">User tags: {{ pin.tags }}</p>
+      <p class="card-text">Auto tags: {{ pin.auto_tags }}</p>
+      <p class="card-text">Inferred Loc: {{ pin.locations }}</p>
       <!-- <input type="text" ng-model="pin.title"/> -->
       <!-- <button ng-click="app.updatePin(pin)">Update</button>  -->
       <p id="dates">Date: {{ pin.timestamp }}</p>
       <button ng-click="app.deletePin(pin)">Delete</button>
+      <object type="image/svg+xml" width="20" height="20" style="float:right;padding-left: 5px" data="share.svg"></object>
+      <p style="float:right;color:#7a7d82;" id="user">Matt</p>
     </div>
   </div>
 </div>
