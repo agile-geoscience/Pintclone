@@ -94,9 +94,9 @@ def create_task():
     insights = ''
     img_dict = ''
     
-    locations,image = ggv.getImsMakeThumb(title)
+    locations,image = ggv.getImsMakeThumb(url)
     
-    thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict)
+    thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict,url)
 
     db.session.add(thing)
     db.session.commit()
