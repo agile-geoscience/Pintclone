@@ -27,13 +27,20 @@ class Pin(db.Model):
     tags = Column(Text, unique=False)
     html = Column(Text, unique=False)
     timestamp = Column(Text, unique=False)
+    locations = Column(Text, unique=False)
+    insights = Column(Text, unique=False)
+    img_dict = Column(Text, unique=False)
 
-    def __init__(self, title, image, tags, html, timestamp):
+    def __init__(self, title, image, tags, html, 
+    				timestamp, locations, insights, img_dict):
         self.title = title
         self.image = image
         self.tags = tags
         self.html = html
         self.timestamp = timestamp
+        self.locations = locations
+        self.insights = insights
+        self.img_dict = img_dict
 
 # class Pin2(db.Model):
 #     id = Column(Integer, primary_key=True)
@@ -74,17 +81,39 @@ def create_task():
     d = request.data.decode()
     j = json.loads(d)
 
-    idx = 256
     title = j['title']
     image = j['image']
     tags = j['tags']
     html = j['html']
     timestamp = j['timestamp']
+    locations = ''
+    insights = ''
+    img_dict = ''
 
-    thing = Pin(title, image, tags, html, timestamp)
+    thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict)
 
     db.session.add(thing)
     db.session.commit()
+
+    return "success", 201
+
+@application.route('/gvis', methods=['POST'])
+def run_google():
+
+    d = request.data.decode()
+    j = json.loads(d)
+
+    ts = str(j['timestamp'])
+
+    print(ts)
+
+    fields = Pin.query.filter_by(timestamp=ts).first()
+
+    print(fields.id)
+    # thing = Pin(title, image, tags, html, timestamp)
+
+    # db.session.add(thing)
+    # db.session.commit()
 
     return "success", 201
 
