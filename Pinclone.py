@@ -30,9 +30,10 @@ class Pin(db.Model):
     locations = Column(Text, unique=False)
     insights = Column(Text, unique=False)
     img_dict = Column(Text, unique=False)
+    url = Column(Text, unique=False)
 
     def __init__(self, title, image, tags, html, 
-    				timestamp, locations, insights, img_dict):
+    				timestamp, locations, insights, img_dict, url):
         self.title = title
         self.image = image
         self.tags = tags
@@ -41,6 +42,7 @@ class Pin(db.Model):
         self.locations = locations
         self.insights = insights
         self.img_dict = img_dict
+        self.url = url
 
 # class Pin2(db.Model):
 #     id = Column(Integer, primary_key=True)
@@ -81,6 +83,8 @@ def create_task():
     d = request.data.decode()
     j = json.loads(d)
 
+
+    url = j['url']
     title = j['title']
     image = j['image']
     tags = j['tags']
