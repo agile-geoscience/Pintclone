@@ -122,11 +122,13 @@ def run_google():
     #print("----",fields.id)
     
     dic = ggv.scrapeImages(url)
-    
+    print(dic)
+    meaning = ggv.scrapeText(url)
     #print("****",fields.id)
     fields.locations = ",".join(dic[1])
-    fields.tags = currenttags+" ".join(dic[2])
+    fields.tags = currenttags+" ".join(dic[2])+" "+" ".join(meaning[0])
     #print(fields.locations)
+    
     
     
     #thing = Pin(title, image, tags, html, timestamp)

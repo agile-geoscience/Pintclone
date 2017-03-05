@@ -16,6 +16,7 @@ import urllib
 from bs4 import BeautifulSoup
 import json
 import math
+from secrets import meaningcloud
 
 def get_image_size(url):
     try:
@@ -175,6 +176,80 @@ def getImsMakeThumb(url):
     # RETURN THUMBNAME?        
     return(title,thumbName+'_thumb.jpg')
 
+def scrapeText(url):
+    r = requests.get(url)
+    data = r.text
+    soup = BeautifulSoup(data,"html5lib")
+    allText = ''
+    for t in soup.find_all('p'):
+        allText+=str(t.contents[0])
+    r = analyse_text(allText)
+    
+    outDict = {}
+    allTags = []
+    
+    people = get_people(r)
+    outDict['people'] = people
+    allTags+=people
+    
+    places = get_places(r)
+    outDict['places'] = places
+    allTags+=places
+    
+    elements = get_elements(r)
+    outDict['elements'] = elements
+    allTags+=elements
+    
+    companies = get_companies(r)
+    outDict['companies'] = companies
+    allTags+=companies
+    tnew = []
+    for tag in allTags:
+        if tag[0].isupper():
+            tnew.append(tag)
+    return(tnew,outDict)
+    
+    
+    
+def analyse_text(t, txtf='plain'):
+    url = "http://api.meaningcloud.com/topics-2.0"
+
+    data = {
+        'key': meaningcloud,
+        'of': 'json',
+        'txt': t,
+        'lang': 'en',
+        'txtf': txtf,  # could be plain or html
+        'dm': 's',  # semantic disambiguation includes morphosyntactic disambiguation
+        'rt': 'n',   # relaxed typography / strictness
+        'sdg': 'l',  # Semantic disambiguation grouping (only if dm=s)
+        'timeref': '2017-03-03 18:00:00 GMT-04:00',  # For interpreting relative time
+        'st': 'n',
+        'tt': 'a',  # topic types
+        'uw': 'n',  # try to deal with unknown words (eg b/c typos)
+        'ud': '',    # user dictionary
+        }
+
+    headers = {'content-type': 'application/x-www-form-urlencoded'}
+
+    r = requests.request("POST", url, data=data, headers=headers)
+
+    return r.json()
+
+def get_companies(j):
+    return [x['form'] for x in j['entity_list'] if 'Company' in x['sementity']['type']]
+
+
+def get_places(j):
+    return [x['form'] for x in j['entity_list'] if 'Location' in x['sementity']['type']]
+
+
+def get_elements(j):
+    return [x['form'] for x in j['concept_list'] if 'Element' in x['sementity']['type']]
+
+def get_people(j):
+    return [x['form'] for x in j['entity_list'] if 'Person' in x['sementity']['type']]
+
 def scrapeImages(url):
     """
     Return dict of images at url with nPix>160000 with googleVision labels and best 
@@ -224,8 +299,9 @@ def scrapeImages(url):
                     if len(strings)>0:
                         geoStrings = geocode_text(strings)
                         geoMed = getMedian(geoStrings)
-                        ims[imUrl]['location'] = geoMed
-                        allOfTheLocations.append("("+str(geoMed[0])+','+str(geoMed[1])+")")
+                        if geoMed!=None:
+                            ims[imUrl]['location'] = geoMed
+                            allOfTheLocations.append("("+str(geoMed[0])+','+str(geoMed[1])+")")
         
     return(ims,allOfTheLocations,allOfTheLabels)
                 
