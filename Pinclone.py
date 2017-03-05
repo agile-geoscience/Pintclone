@@ -9,7 +9,7 @@ from flask import send_from_directory
 import os
 from flask import request
 from flask import jsonify, json
-#import goldenGoogleVision as ggv
+import goldenGoogleVision as ggv
 
 
 application = Flask(__name__, static_url_path='')
@@ -89,7 +89,9 @@ def create_task():
     locations = ''
     insights = ''
     img_dict = ''
-
+    
+    locations,image = ggv.getImsMakeThumb(title)
+    
     thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict)
 
     db.session.add(thing)
@@ -110,6 +112,8 @@ def run_google():
     fields = Pin.query.filter_by(timestamp=ts).first()
 
     print(fields.id)
+    
+    
     # thing = Pin(title, image, tags, html, timestamp)
 
     # db.session.add(thing)

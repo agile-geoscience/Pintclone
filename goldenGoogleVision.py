@@ -128,7 +128,50 @@ def getThumb(imUrl):
     if T:
         square = square.transpose(method=Image.TRANSPOSE)
     return(square)
-     
+
+def getImsMakeThumb(url):
+    """
+    Return dict of images at url with nPix>160000 and thumbnail
+    """
+    #Scrape images
+    r = requests.get(url)
+    data = r.text
+    soup = BeautifulSoup(data,"html5lib")
+    # get title
+    title = ''
+    try:
+        title = soup.find_all('title')[0]
+        title.contents[0]
+    except:
+        pass
+    ims = {}
+    # for every image with nPix>160000, get GV labels, add labels to dict
+    maxPix, bigIm = 0,''
+    for image in soup.find_all("img"):
+        if image.get("src")!=None:
+            imUrl = image.get("src")
+            if not imUrl.startswith('http'): # need to add absolute path
+                if imUrl[0]=='/':
+                    base = url[:url.index('://')]+url[url.index('://'):]
+                    imUrl = urllib.parse.urljoin(base,imUrl)
+                else:
+                    base = url[::-1][url[::-1].index('/'):][::-1]
+                    imUrl = urllib.parse.urljoin(base,imUrl)
+            size = get_image_size(imUrl)
+            nPix = np.product(size)
+            # Penalize long/wide images
+            if max(size)>2.5*min(size):
+                nPix/=10.
+            if nPix > maxPix:
+                maxPix,bigIm = nPix,imUrl 
+                
+    # build square thumbnail for biggest image
+    thumb = getThumb(bigIm)
+    thumbName = bigIm[::-1][:bigIm[::-1].index('/')][::-1]
+    thumb.save('/static/'+thumbName+'_thumb.jpg',format='jpeg')
+    # RETURN THUMBNAME?        
+    return(title,'/static/'+thumbName+'_thumb.jpg')
+
 
 def scrapeImages(url):
     """
@@ -183,10 +226,10 @@ def scrapeImages(url):
     # build square thumbnail for biggest image
     thumb = getThumb(bigIm)
     thumbName = bigIm[::-1][:bigIm[::-1].index('/')][::-1]
-    thumb.save(thumbName+'_thumb.jpg',format='jpeg')
+    thumb.save('/static/'+thumbName+'_thumb.jpg',format='jpeg')
     # RETURN THUMBNAME?
         
-    return(ims)
+    return(ims,'/static/'+thumbName+'_thumb.jpg')
                 
                 
     
