@@ -1,7 +1,12 @@
 body {
-	background: #ccccdd;
+  padding-top: 70px;
+  padding-bottom: 40px;
 }
 
 .pin {
-	display: inline-block;
+    font-size: 100%;
+}
+
+.footer {
+	margin-top: 40px;
 }

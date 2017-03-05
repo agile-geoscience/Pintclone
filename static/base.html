@@ -19,12 +19,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          {% include "navbar.html" %}
+<ng-include src="navbar.html">
+</ng-include>
         </div>
       </div>
     </div>
 
-  {% block body %}{% endblock %}
+<ng-include src="main.html">
+</ng-include>
 
   <div class="container">
 
