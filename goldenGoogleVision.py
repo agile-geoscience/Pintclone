@@ -17,6 +17,23 @@ from bs4 import BeautifulSoup
 import json
 import math
 from secrets import meaningcloud
+"""
+@author: anneya
+
+                      .-.
+                 .--.(   ).--.
+      <-.  .-.-.(.->          )_  .--.
+       `-`(     )-'             `)    )
+         (o  o  )                `)`-'
+        (      )                ,)
+        ( ()  )                 )
+         `---"\    ,    ,    ,/`
+               `--' `--' `--'
+                |  |   |   |
+                |  |   |   |
+                '  |   '   |
+
+"""
 
 def get_image_size(url):
     try:
@@ -301,7 +318,7 @@ def scrapeImages(url):
                         geoMed = getMedian(geoStrings)
                         if geoMed!=None:
                             ims[imUrl]['location'] = geoMed
-                            allOfTheLocations.append("("+str(geoMed[0])+','+str(geoMed[1])+")")
+                            allOfTheLocations.append("("+str(round(geoMed[0],4))+','+str(round(geoMed[1],4))+")")
         
     return(ims,allOfTheLocations,allOfTheLabels)
                 
