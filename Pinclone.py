@@ -31,9 +31,10 @@ class Pin(db.Model):
     insights = Column(Text, unique=False)
     img_dict = Column(Text, unique=False)
     url = Column(Text, unique=False)
+    auto_tags = Column(Text, unique=False)
 
     def __init__(self, title, image, tags, html, 
-    				timestamp, locations, insights, img_dict, url):
+    				timestamp, locations, insights, img_dict, url, auto_tags):
         self.title = title
         self.image = image
         self.tags = tags
@@ -43,6 +44,7 @@ class Pin(db.Model):
         self.insights = insights
         self.img_dict = img_dict
         self.url = url
+        self.auto_tags = auto_tags
 
 # class Pin2(db.Model):
 #     id = Column(Integer, primary_key=True)
@@ -93,12 +95,13 @@ def create_task():
     locations = ''
     insights = ''
     img_dict = ''
+    auto_tags = ''
     
     # create optimal thumbnail from url, scrape title
     title,image = ggv.getImsMakeThumb(url)
 
     # save
-    thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict,url)
+    thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict,url,auto_tags)
     db.session.add(thing)
     db.session.commit()
 
@@ -126,7 +129,7 @@ def run_google():
     meaning = ggv.scrapeText(url)
     #print("****",fields.id)
     fields.locations = ",".join(dic[1])
-    fields.tags = currenttags+" ".join(dic[2])+" "+" ".join(meaning[0])
+    fields.auto_tags = " ".join(dic[2])+" "+" ".join(meaning[0])
     #print(fields.locations)
     
     

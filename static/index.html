@@ -14,8 +14,9 @@
     <img class="card-img-top img-fluid" ng-src="{{ pin.image }}" alt="">
     <div class="card-block">
       <h4 class="card-title">{{ pin.title }}</h4>
-      <p class="card-text">Tags: {{ pin.tags }}</p>
-      <p class="card-text">{{ pin.locations }}</p>
+      <p class="card-text">User tags: {{ pin.tags }}</p>
+      <p class="card-text">Auto tags: {{ pin.auto_tags }}</p>
+      <p class="card-text">Inferred Loc: {{ pin.locations }}</p>
       <!-- <input type="text" ng-model="pin.title"/> -->
       <!-- <button ng-click="app.updatePin(pin)">Update</button>  -->
       <p id="dates">Date: {{ pin.timestamp }}</p>
