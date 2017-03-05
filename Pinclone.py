@@ -125,9 +125,10 @@ def run_google():
     #print("----",fields.id)
     
     dic = ggv.scrapeImages(url)
-    print(dic)
+    # print(dic)
     meaning = ggv.scrapeText(url)
     #print("****",fields.id)
+    #print(join(dic[1]))
     fields.locations = ",".join(dic[1])
     fields.auto_tags = " ".join(dic[2])+" "+" ".join(meaning[0])
     #print(fields.locations)

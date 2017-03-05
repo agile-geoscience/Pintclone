@@ -200,6 +200,7 @@ def scrapeText(url):
     allText = ''
     for t in soup.find_all('p'):
         allText+=str(t.contents[0])
+
     r = analyse_text(allText)
     
     outDict = {}
