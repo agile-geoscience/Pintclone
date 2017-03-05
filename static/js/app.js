@@ -8,7 +8,11 @@ app.controller("AppCtrl", function ($http){
     })
 
     app.addPin = function () {
-        $http.post("/api/pin", {"title":"new","image":"http://placekitten.com/200/200/?image=" + app.pins.length})
+        $http.post("/api/pin", {"title":"Cat",
+                                "image":"http://placekitten.com/200/200/?image=" + app.pins.length,
+                                "tags":"cats",
+                                "html":"None",
+                                "timestamp":"Today ladies"})
             .success(function (data) {
                 app.pins.push(data);
             })
