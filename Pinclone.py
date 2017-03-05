@@ -94,14 +94,15 @@ def create_task():
     insights = ''
     img_dict = ''
     
-    locations,image = ggv.getImsMakeThumb(url)
-    
-    thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict,url)
+    # create optimal thumbnail from url, scrape title
+    title,image = ggv.getImsMakeThumb(url)
 
+    # save
+    thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict,url)
     db.session.add(thing)
     db.session.commit()
 
-    return "success", 201
+    return timestamp, 201
 
 @application.route('/gvis', methods=['POST'])
 def run_google():
@@ -109,19 +110,29 @@ def run_google():
     d = request.data.decode()
     j = json.loads(d)
 
-    ts = str(j['timestamp'])
+    ts = j['timestamp']
 
-    print(ts)
+    #print(j)
 
     fields = Pin.query.filter_by(timestamp=ts).first()
 
-    print(fields.id)
+    url = fields.url
+    currenttags = fields.tags
+    
+    #print("----",fields.id)
+    
+    dic = ggv.scrapeImages(url)
+    
+    #print("****",fields.id)
+    fields.locations = ",".join(dic[1])
+    fields.tags = currenttags+" ".join(dic[2])
+    #print(fields.locations)
     
     
-    # thing = Pin(title, image, tags, html, timestamp)
+    #thing = Pin(title, image, tags, html, timestamp)
 
     # db.session.add(thing)
-    # db.session.commit()
+    db.session.commit()
 
     return "success", 201
 

@@ -141,9 +141,10 @@ def getImsMakeThumb(url):
     title = ''
     try:
         title = soup.find_all('title')[0]
-        title.contents[0]
+        title = title.contents[0]
     except:
         pass
+
     ims = {}
     # for every image with nPix>160000, get GV labels, add labels to dict
     maxPix, bigIm = 0,''
@@ -164,14 +165,15 @@ def getImsMakeThumb(url):
                 nPix/=10.
             if nPix > maxPix:
                 maxPix,bigIm = nPix,imUrl 
-                
+    print(bigIm)   
     # build square thumbnail for biggest image
     thumb = getThumb(bigIm)
+    print(thumb)
     thumbName = bigIm[::-1][:bigIm[::-1].index('/')][::-1]
-    thumb.save('/static/'+thumbName+'_thumb.jpg',format='jpeg')
+    thumb.save('static/'+thumbName+'_thumb.jpg',format='jpeg')
+    print('saved')
     # RETURN THUMBNAME?        
-    return(title,'/static/'+thumbName+'_thumb.jpg')
-
+    return(title,thumbName+'_thumb.jpg')
 
 def scrapeImages(url):
     """
@@ -183,8 +185,9 @@ def scrapeImages(url):
     data = r.text
     soup = BeautifulSoup(data,"html5lib")
     ims = {}
+    allOfTheLocations = []
+    allOfTheLabels = []
     # for every image with nPix>160000, get GV labels, add labels to dict
-    maxPix, bigIm = 0,''
     for image in soup.find_all("img"):
         if image.get("src")!=None:
             imUrl = image.get("src")
@@ -199,9 +202,7 @@ def scrapeImages(url):
             nPix = np.product(size)
             # Penalize long/wide images
             if max(size)>2.5*min(size):
-                nPix/=10.
-            if nPix > maxPix:
-                maxPix,bigIm = nPix,imUrl          
+                nPix/=10.         
             if nPix > 160000: # For interestingly large images
                 # Add to dict
                 ims[imUrl] = {'url':imUrl}
@@ -209,6 +210,8 @@ def scrapeImages(url):
                 # Add googleVision labels to dict
                 allLabels = []
                 for label in labels:
+                    if label.description not in allOfTheLabels:
+                        allOfTheLabels.append(label.description)
                     allLabels.append(label.description)
                 if len(allLabels)>0:
                     ims[imUrl]['GVlabels'] = allLabels
@@ -222,14 +225,9 @@ def scrapeImages(url):
                         geoStrings = geocode_text(strings)
                         geoMed = getMedian(geoStrings)
                         ims[imUrl]['location'] = geoMed
-                        
-    # build square thumbnail for biggest image
-    thumb = getThumb(bigIm)
-    thumbName = bigIm[::-1][:bigIm[::-1].index('/')][::-1]
-    thumb.save('/static/'+thumbName+'_thumb.jpg',format='jpeg')
-    # RETURN THUMBNAME?
+                        allOfTheLocations.append("("+str(geoMed[0])+','+str(geoMed[1])+")")
         
-    return(ims,'/static/'+thumbName+'_thumb.jpg')
+    return(ims,allOfTheLocations,allOfTheLabels)
                 
                 
     
