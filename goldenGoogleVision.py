@@ -4,10 +4,8 @@ import numpy as np
 from collections import defaultdict
 from google.cloud import vision
 from oauth2client.client import GoogleCredentials
-credentials = GoogleCredentials.get_application_default()
 import googlemaps
 from datetime import datetime
-gmaps = googlemaps.Client(key='AIzaSyB9lTkL2nX1SYDnI7zino6IqiiPudgqVvI')
 import geomMed as gm
 import requests
 from PIL import Image
@@ -34,6 +32,9 @@ from secrets import meaningcloud
                 '  |   '   |
 
 """
+from secrets import gmaps_key
+credentials = GoogleCredentials.get_application_default()
+gmaps = googlemaps.Client(key=gmaps_key)
 
 def get_image_size(url):
     try:
