@@ -121,8 +121,9 @@ def run_google():
     # currenttags = fields.tags
 
     dic = ggv.scrapeImages(url)
-    print(dic)
+    # print(dic)
     meaning = ggv.scrapeText(url)
+
     fields.locations = ",".join(dic[1])
     fields.auto_tags = " ".join(dic[2])+" "+" ".join(meaning[0])
 

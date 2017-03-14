@@ -1,49 +1,52 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 492.308 492.308" style="enable-background:new 0 0 492.308 492.308;" xml:space="preserve">
-<g>
-	<g>
-		<path d="M411.26,319.257c-28.925,0-54.292,15.279-68.64,38.142l-184.537-86.15c2.584-7.91,4.023-16.332,4.023-25.094
-			c0-8.451-1.309-16.599-3.719-24.264l184.363-86.767c14.372,22.746,39.674,37.93,68.51,37.93c44.692,0,81.048-36.361,81.048-81.053
-			S455.952,10.95,411.26,10.95s-81.058,36.361-81.058,81.053c0,8.85,1.476,17.35,4.111,25.33L150.15,204.005
-			c-14.257-23.282-39.855-38.901-69.097-38.901C36.361,165.103,0,201.464,0,246.156c0,44.692,36.361,81.053,81.053,81.053
-			c28.926,0,54.291-15.28,68.637-38.144l184.537,86.15c-2.585,7.91-4.025,16.332-4.025,25.095c0,44.692,36.365,81.048,81.058,81.048
-			s81.048-36.356,81.048-81.048S455.952,319.257,411.26,319.257z M411.26,30.642c33.827,0,61.356,27.524,61.356,61.361
-			s-27.529,61.361-61.356,61.361c-33.837,0-61.365-27.524-61.365-61.361S377.423,30.642,411.26,30.642z M81.053,307.517
-			c-33.837,0-61.361-27.524-61.361-61.361c0-33.837,27.524-61.361,61.361-61.361s61.361,27.524,61.361,61.361
-			C142.413,279.993,114.889,307.517,81.053,307.517z M411.26,461.666c-33.837,0-61.365-27.524-61.365-61.356
-			c0-33.837,27.529-61.361,61.365-61.361c33.827,0,61.356,27.524,61.356,61.361C472.615,434.142,445.087,461.666,411.26,461.666z"/>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="512px"
+   id="Layer_1"
+   style="enable-background:new 0 0 512 512;"
+   version="1.1"
+   viewBox="0 0 512 512"
+   width="512px"
+   xml:space="preserve"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="1489512551_share.svg"><metadata
+     id="metadata23"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs21" /><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1295"
+     inkscape:window-height="701"
+     id="namedview19"
+     showgrid="false"
+     inkscape:zoom="0.32593203"
+     inkscape:cx="-123.99583"
+     inkscape:cy="145.46816"
+     inkscape:window-x="39"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_1" /><circle
+     cx="256"
+     cy="255.92999"
+     r="249.86375"
+     style="fill:#39b54a"
+     id="circle6" /><path
+     d="m 344.31084,305.13685 c -16.65631,0 -31.68636,6.92711 -42.3976,18.04518 L 189.50599,264.50857 c 0.72031,-3.68066 1.10785,-7.47799 1.10785,-11.36968 0,-0.87856 -0.0274,-1.75206 -0.066,-2.6215 l 114.35718,-59.92335 c 10.43531,9.40558 24.24995,15.13658 39.40783,15.13658 32.51723,0 58.87738,-26.35914 58.87738,-58.87942 0,-32.51622 -26.36015,-58.878393 -58.87738,-58.878393 -32.52029,0 -58.87942,26.362173 -58.87942,58.878393 0,1.38076 0.0639,2.74629 0.15828,4.1027 l -113.4025,59.42623 c -10.54994,-9.98486 -24.78156,-16.12064 -40.45378,-16.12064 -32.517243,0 -58.878403,26.36015 -58.878403,58.8794 0,32.51826 26.36116,58.87841 58.878403,58.87841 12.44708,0 23.98414,-3.87038 33.4942,-10.4627 l 120.20989,62.7437 c 0.15319,32.38636 26.4474,58.59534 58.87231,58.59534 32.51723,0 58.87738,-26.36014 58.87738,-58.8794 9.8e-4,-32.51724 -26.36318,-58.87739 -58.87839,-58.87739 z"
+     style="fill:#ffffff"
+     id="path10"
+     inkscape:connector-curvature="0" /><g
+     id="Layer_1_1_"
+     transform="matrix(0.97603028,0,0,0.97603028,6.1362487,6.1345706)" /></svg>
