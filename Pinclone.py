@@ -1,14 +1,14 @@
-# video at https://www.youtube.com/watch?v=2geC50roans
-# tutorial done until 17"40'
+# -*- coding: utf-8 -*-
+import os
 
+from sqlalchemy import Column, Integer, Text
 from flask import Flask
 from flask_restless import APIManager
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, Text
 from flask import send_from_directory
-import os
 from flask import request
-from flask import jsonify, json
+from flask import json
+
 import goldenGoogleVision as ggv
 
 
@@ -33,8 +33,8 @@ class Pin(db.Model):
     url = Column(Text, unique=False)
     auto_tags = Column(Text, unique=False)
 
-    def __init__(self, title, image, tags, html, 
-    				timestamp, locations, insights, img_dict, url, auto_tags):
+    def __init__(self, title, image, tags, html,
+                 timestamp, locations, insights, img_dict, url, auto_tags):
         self.title = title
         self.image = image
         self.tags = tags
@@ -50,9 +50,9 @@ class Pin(db.Model):
 #     id = Column(Integer, primary_key=True)
 #     title = Column(Text, unique=False)
 #     image = Column(Text, unique=False)
-#     tags = Column(Text, unique=False) 
-#     html = Column(Text, unique=False) 
-#     timestamp = Column(Text, unique=False) 
+#     tags = Column(Text, unique=False)
+#     html = Column(Text, unique=False)
+#     timestamp = Column(Text, unique=False)
 
 
 db.create_all()
@@ -85,7 +85,6 @@ def create_task():
     d = request.data.decode()
     j = json.loads(d)
 
-
     url = j['url']
     title = j['title']
     image = j['image']
@@ -96,16 +95,17 @@ def create_task():
     insights = ''
     img_dict = ''
     auto_tags = ''
-    
+
     # create optimal thumbnail from url, scrape title
-    title,image = ggv.getImsMakeThumb(url)
+    title, image = ggv.getImsMakeThumb(url)
 
     # save
-    thing = Pin(title, image, tags, html, timestamp,locations,insights,img_dict,url,auto_tags)
+    thing = Pin(title, image, tags, html, timestamp, locations, insights, img_dict, url, auto_tags)
     db.session.add(thing)
     db.session.commit()
 
     return timestamp, 201
+
 
 @application.route('/gvis', methods=['POST'])
 def run_google():
@@ -115,26 +115,18 @@ def run_google():
 
     ts = j['timestamp']
 
-    #print(j)
-
     fields = Pin.query.filter_by(timestamp=ts).first()
 
     url = fields.url
-    currenttags = fields.tags
-    
-    #print("----",fields.id)
-    
+    # currenttags = fields.tags
+
     dic = ggv.scrapeImages(url)
     print(dic)
     meaning = ggv.scrapeText(url)
-    #print("****",fields.id)
     fields.locations = ",".join(dic[1])
     fields.auto_tags = " ".join(dic[2])+" "+" ".join(meaning[0])
-    #print(fields.locations)
-    
-    
-    
-    #thing = Pin(title, image, tags, html, timestamp)
+
+    # thing = Pin(title, image, tags, html, timestamp)
 
     # db.session.add(thing)
     db.session.commit()
