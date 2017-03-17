@@ -115,7 +115,7 @@ def run_google():
 
     ts = j['timestamp']
 
-    fields = Pin.query.filter_by(timestamp=ts).first()
+    fields = Pin.query.filter_by(timestamp=ts).last()
 
     url = fields.url
     # currenttags = fields.tags
